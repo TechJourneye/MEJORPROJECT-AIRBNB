@@ -1,0 +1,41 @@
+img{
+    height: 200px;
+    width: 400px;
+}
+
+.show-part{
+    display: flex;
+    margin: 2rem auto;
+    /* background-color: aquamarine; */
+    align-items: center;
+}
+.-card img{
+    width: 500px;
+    border-radius: 10px;
+}
+.-card{
+   margin: 0 auto;
+   border: none;
+}
+
+.-card-text{
+    margin: 0;
+}
+.same-line{
+    display: flex;
+}
+.same-line a{
+    margin-right: 5px;
+}
+
+.no-mergin{
+    margin: 0 0 5px 0;
+}
+.card-title{
+    margin-bottom: 5px;
+}
+.scroll{
+    /* overflow: scroll; */
+    display: flex;
+    flex-wrap: wrap;
+}

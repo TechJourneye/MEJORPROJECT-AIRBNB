@@ -1,0 +1,62 @@
+<% layout("/layouts/boilarplate")%>
+
+
+    <form  method="post" action="/listing" enctype="multipart/form-data" novalidate class="needs-validation">
+        <br>
+        <div class="row">
+
+        <div  class="col-6">
+            <label for="title" class="form-label">Title</label>
+            <input type="text" name="listing[title]" placeholder="Enter Title" class="form-control" required> 
+            <div class="valid-feedback">
+              Looks good!
+            </div>
+        </div>
+         <div>
+            <label for="description" class="form-label">description</label>
+            <textarea name="listing[description]" id="" class="form-control" placeholder="enter some description" required></textarea>
+            <div class="invalid-feedback">
+              Please Give a Short Description!
+            </div>
+         </div>
+       
+        <div>
+          <label for="img" class="form-label">Upload Image</label>
+          <input type="file" name="listing[img]"  placeholder="Enter Img URL" class="form-control" >
+      </div>
+       
+      <div>
+        <label for="location" class="form-label">Location</label>
+        <input type="text" name="listing[location]"  placeholder="Give Location" class="form-control" required>
+        <div class="invalid-feedback">
+           Privide a Valid Location!
+        </div>
+      </div>
+        
+      <div class="row">
+
+          <div class="col-4">
+            <label for="price" class="form-label">Price</label>
+            <input type=""name="listing[price]" placeholder="Enter Price" class="form-control" >
+            <div class="invalid-feedback">
+               Enter Price!
+            </div>
+           </div>
+           
+           <div class="col-6">
+            <label for="country" class="form-label">Country</label>
+            <input type="text" name="listing[country]" placeholder="Enter Countru Name" class="form-control" required>
+            <div class="invalid-feedback">
+              Provide a Valid Country Name!
+            </div>
+           </div>
+
+      </div>
+      
+      
+    </div>
+    <br>
+        <button class="btn btn-success">Submit</button>
+        <br>
+    </form>
+     
