@@ -58,6 +58,7 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 async function main() {
+//    await mongoose.connect(dbUrl);
    await mongoose.connect(dbUrl);
 }
 main().then((res)=>{
@@ -83,14 +84,6 @@ app.use((req,res,next)=>{
     next();
 })
 
-// app.get("/register",async (req,res)=>{
-//     let fakeuser=new User({
-//         email:"abc@gmail.com",
-//         username:"demo",
-//     })
-//     let registerUser=await User.register(fakeuser,"hello");
-//     res.send(registerUser);
-// })
 app.use("/", userRouter);
 // listing route
 app.use("/listing", listingRouter);
@@ -107,9 +100,6 @@ app.use((err,req,res,next)=>{
      res.status(status).render("error.ejs",{err});
   
 })
-// app.get("/",(req,res)=>{
-//     res.send("Hi i am root");
-// })
 
 app.listen(8080,()=>{
     console.log("Server have started");

@@ -33,10 +33,10 @@
      display: flex;
      align-items: center;
     }
-  </style>
+</style>
  
 
-<div id="filters">
+<div id="filters" class="mb-3">
     <div class="filter">
       <div><i class="fa-solid fa-fire"></i></div>
       <p>Trending</p>
@@ -84,44 +84,48 @@
 
 </div>
 
-
-    <div class="all-listing">
+<!-- all-listing -->
+    <div class="row g-4">  
 
     <%  for(listing of allListings){%>
-        <a class="card-a" href="/listing/<%=listing._id%>">
-            <div class="card cardidx" >
+          <div class=" col-12 col-md-5 col-lg-4">
 
-                <div class="your-scroll-container">
+            <a class="card-a" href="/listing/<%=listing._id%>">
+              <div class="card h-100 cardidx" >
+                  <!-- <div class="your-scroll-container"> -->
+                      <img src="<%=listing.img.url%>" class="card-img-top" alt="...">
+                      <div class="card-body">
+                          <h5 class="card-title"><%=listing.title%></h5>
+                          <p class="price"> Price:&#8377;<b><%=listing.price.toLocaleString("en-IN")%>/night</b>
+                            <i class="tax-info">&nbsp;+18% GST</i>
+                           </p>
+                          <p class="country">Country: <b> <%=listing.country%></b></p>
+                      </div>
+                  <!-- </div> -->
+  
+                  </div>
+          </a>
+  
 
-                    <img src="<%=listing.img.url%>" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title"><%=listing.title%></h5>
-                        <p class="card-text"><%= listing.description%></p>
-                        <p class="price"> Price:&#8377;<b><%=listing.price.toLocaleString("en-IN")%>/night</b><i class="tax-info">18% GST</i> </p>
-                        <p class="location">Location:<i class="fa-solid fa-location-dot" style="font-size: 0.7rem;"></i><%= listing.location%></p>
-                        <p class="country">Country: <b> <%=listing.country%></b></p>
-                    </div>
-                </div>
-
-                </div>
-        </a>
-
+          </div>
+       
             <%}%>
 
     </div>
 
     <script>
-        let taxSwitch=document.getElementById("flexSwitchCheckDefault" );
-        taxSwitch.addEventListener("click",()=>{
+      function setUpTaxToggle (){
+       let taxSwitch=document.getElementById("flexSwitchCheckDefault" );
+        taxSwitch.addEventListener("change",()=>{
           let taxInfo=document.getElementsByClassName("tax-info");
           for(info of taxInfo){
-           if(info.style.display!="inline"){
-            info.style.display="inline";
-           }else{
-            info.style.display="none"
-           }
+           info.style.display=taxSwitch.checked?"inline":"none";
           }
         })
+      }
+       document.addEventListener("DOMContentLoaded",setUpTaxToggle);
+         // BACK/FORWARD CACHE FIX
+       window.addEventListener("pageshow",setUpTaxToggle);
       </script>
    
 
