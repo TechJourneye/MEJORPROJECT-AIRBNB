@@ -23,9 +23,9 @@ const flash=require("connect-flash");
 const passport=require("passport");
 const LocalStrategy=require("passport-local");
 const User=require("./models/user.js");
-
+const Listing=require("./models/listing.js");
 const store=MongoStore.create({
-    mongoUrl:dbUrl,
+    mongoUrl:MONGO_URL,
     crypto:{
       secret:process.env.SECRET,
     },
@@ -58,8 +58,8 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 async function main() {
-//    await mongoose.connect(dbUrl);
    await mongoose.connect(dbUrl);
+//    await mongoose.connect(MONGO_URL);
 }
 main().then((res)=>{
     console.log("Connection with DB Successful");
@@ -90,6 +90,7 @@ app.use("/listing", listingRouter);
 //Review route
 app.use("/listing/:id/review", reviewRouter)
 
+//serach
 
 app.all("*", (req,res,next) => {
     next(new ExpressError(404,"page not fount"));

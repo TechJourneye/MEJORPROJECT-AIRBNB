@@ -104,10 +104,13 @@ body{
   }
 
   .airbnb-btn{
-    background-color:#f5336a;
+    background-color:#f5336a; 
     color: white;
   }
   .airbnb-btn:hover{
     background-color: #f5336a;
     color: white;
+  }
+  .fa-compass{
+    color: #f5336a;
   }

@@ -16,11 +16,13 @@ const upload = multer({ storage })
 router.route("/")
 .get(WrapAsync(listingController.index))
 .post(  isLoggedIn, upload.single("listing[img]"),validateListing,  WrapAsync(listingController.createListing));
-// .post(  upload.single("listing[img]"),(req,res)=>{
-//     console.log(req.file);
-//     res.send(req.file);
-// })
-//create route
+
+router.post("/search", async (req,res,next)=>{
+    let country=req.body.country;
+    const searchedListing=await Listing.find({country:{$regex:country.trim(), $options:"i"}}) ;
+    res.render("listings/search.ejs",{searchedListing});
+})
+
 router.get("/new", isLoggedIn,listingController.createListingroute);
 
 //show route

@@ -1,4 +1,14 @@
 <% layout("/layouts/boilarplate")%>
+ <style>
+   #map{
+     border-radius: 1rem;
+   }
+    @media (max-width:500px){
+       #map{
+         width: 80vh;
+       }
+    }
+ </style>
 <script>
   const mapToken= "<%= process.env.MAP_TOKEN%>"
   const Listing= <%- JSON.stringify(listing) %>
@@ -79,7 +89,7 @@
   <!-- Show review part -->
        <div class="row">
       <% for(review of listing.reviews) {%>
-        <div class="col-4">
+        <div class="col-12 col-md-5 col-lg-4">
           <div class="card ">
             <div class="card-body">
               <h5 class="card-title">@<%=review.author.username%></h5>
@@ -89,21 +99,23 @@
                   Rated: 3 stars
                 </p>
               <br>
+              <% if(currUser && currUser._id.equals(review.author._id)) {%>
                <form method="post" action="/listing/<%=listing._id%>/review/<%=review._id%>?_method=DELETE">
                 <button class="btn btn-sm btn-dark">Delete</button>
                </form>
-
+             <% }%>
             </div>
           </div>  
         </div>
       <% }%>
- 
-      <div  class="col-6 offset-3 mb-3">
+   </div>
+
+      <div  class="col-5  mb-3">
         <h1>Where you'll be</h1>
         <div id="map"></div>
       </div>
 
-    </div>
+   
     <script src="/js/map.js"></script>
       <!-- <script src="/js/btn.js"></script>
 </body> -->
